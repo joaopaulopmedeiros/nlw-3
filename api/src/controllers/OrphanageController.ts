@@ -4,12 +4,16 @@ import { getRepository } from "typeorm";
 
 import Orphanage from "../models/Orphanage";
 
+import orphanageView from "../views/orphanages";
+
 class OrphanageController {
     static async index(req: Request, res: Response) {
         try {
           const orphanagesRepository = getRepository(Orphanage);
-          const orphanages = await orphanagesRepository.find();
-          return res.status(200).json(orphanages);
+          const orphanages = await orphanagesRepository.find({
+            relations: ["images"]
+          });
+          return res.status(200).json(orphanageView.renderMany(orphanages));
         } catch (error) {
           res.status(500).json({
             error: error,
@@ -27,7 +31,7 @@ class OrphanageController {
               relations: ["images"]
             });
 
-            return res.status(200).json(orphanage);
+            return res.status(200).json(orphanageView.render(orphanage));
 
         } catch (error) {
             res.status(500).json({
