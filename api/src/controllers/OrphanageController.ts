@@ -23,7 +23,9 @@ class OrphanageController {
 
             const orphanagesRepository = getRepository(Orphanage);
 
-            const orphanage = await orphanagesRepository.findOneOrFail(id);
+            const orphanage = await orphanagesRepository.findOneOrFail(id, {
+              relations: ["images"]
+            });
 
             return res.status(200).json(orphanage);
 
@@ -34,7 +36,7 @@ class OrphanageController {
         }
       }
     
-      static async post(req: Request, res: Response) {
+      static async store(req: Request, res: Response) {
         try {
           const {
             name,

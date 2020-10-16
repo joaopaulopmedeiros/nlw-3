@@ -11,6 +11,6 @@ import OrphanageController from "./controllers/OrphanageController";
 
 routes.get("/orfanatos", OrphanageController.index);
 routes.get("/orfanatos/:id", OrphanageController.show);
-routes.post("/orfanatos", upload.array("images") , OrphanageController.post);
+routes.post("/orfanatos", upload.array("images") , OrphanageController.store);
 
 export default routes;
