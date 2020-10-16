@@ -12,5 +12,6 @@ routes.get("/", (req, res) => {
 });
 
 routes.get("/orfanatos", OrphanageController.index);
+routes.post("/orfanatos", OrphanageController.post);
 
 export default routes;

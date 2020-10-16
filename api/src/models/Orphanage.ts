@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity("orphanges")
+@Entity("orphanages")
 export default class Orphanage {
   @PrimaryGeneratedColumn("increment")
   id: number;
@@ -9,10 +9,10 @@ export default class Orphanage {
   name: string;
 
   @Column()
-  latitue: number;
+  latitude: number;
 
   @Column()
-  longitue: number;
+  longitude: number;
 
   @Column()
   about: string;
