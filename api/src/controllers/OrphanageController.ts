@@ -16,6 +16,23 @@ class OrphanageController {
           });
         }
       }
+
+      static async show(req: Request, res: Response){
+        try {
+            const { id } = req.params;
+
+            const orphanagesRepository = getRepository(Orphanage);
+
+            const orphanage = await orphanagesRepository.findOneOrFail(id);
+
+            return res.status(200).json(orphanage);
+
+        } catch (error) {
+            res.status(500).json({
+                "error": error
+            })
+        }
+      }
     
       static async post(req: Request, res: Response) {
         try {
